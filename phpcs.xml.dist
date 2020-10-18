@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+  <arg name="basepath" value="." />
+  <arg name="cache" value=".phpcs-cache" />
+  <arg name="colors" />
+  <arg name="extensions" value="php" />
+
+  <rule ref="PSR2" />
+
+  <!-- Ban some functions -->
+  <rule ref="Generic.PHP.ForbiddenFunctions">
+    <properties>
+      <property name="forbiddenFunctions" type="array">
+        <!-- Dangerous or undesired functions -->
+        <element key="create_function" value="null" />
+        <element key="pcntl_alarm" value="null" />
+        <element key="pcntl_fork" value="null" />
+        <element key="pcntl_waitpid" value="null" />
+        <element key="pcntl_wait" value="null" />
+        <element key="pcntl_wifexited" value="null" />
+        <element key="pcntl_wifstopped" value="null" />
+        <element key="pcntl_wifsignaled" value="null" />
+        <element key="pcntl_wexitstatus" value="null" />
+        <element key="pcntl_wtermsig" value="null" />
+        <element key="pcntl_wstopsig" value="null" />
+        <element key="pcntl_signal" value="null" />
+        <element key="pcntl_signal_dispatch" value="null" />
+        <element key="pcntl_get_last_error" value="null" />
+        <element key="pcntl_strerror" value="null" />
+        <element key="pcntl_sigprocmask" value="null" />
+        <element key="pcntl_sigwaitinfo" value="null" />
+        <element key="pcntl_sigtimedwait" value="null" />
+        <element key="pcntl_exec" value="null" />
+        <element key="pcntl_getpriority" value="null" />
+        <element key="pcntl_setpriority" value="null" />
+        <element key="dl" value="null" />
+        <element key="phpinfo" value="null" />
+        <element key="system" value="null" />
+        <element key="shell_exec" value="null" />
+        <element key="escapeshellarg" value="null" />
+        <element key="escapeshellcmd" value="null" />
+        <element key="passthru" value="null" />
+        <element key="proc_close" value="null" />
+        <element key="proc_open" value="null" />
+        <element key="proc_get_status" value="null" />
+        <element key="proc_nice" value="null" />
+        <element key="proc_open" value="null" />
+        <element key="proc_terminate" value="null" />
+        <element key="popen" value="null" />
+        <element key="pclose" value="null" />
+        <element key="chown" value="null" />
+        <element key="disk_free_space" value="null" />
+        <element key="disk_total_space" value="null" />
+        <element key="diskfreespace" value="null" />
+        <element key="fileinode" value="null" />
+        <element key="max_execution_time" value="null" />
+        <element key="highlight_file" value="null" />
+        <element key="show_source" value="null" />
+        <!-- Deprecated Features 7.0, https://secure.php.net/manual/en/migration70.deprecated.php -->
+        <element key="ldap_sort" value="null" />
+        <!-- Deprecated Features 7.1, https://secure.php.net/manual/en/migration71.deprecated.php -->
+        <!-- Deprecated Features 7.2, https://secure.php.net/manual/en/migration72.deprecated.php -->
+        <element key="create_function" value="null" />
+        <element key="each" value="null" />
+        <element key="gmp_random" value="null" />
+        <element key="read_exif_data" value="exif_read_data" />
+        <element key="png2wbmp" value="null" />
+        <element key="jpeg2wbmp" value="null" />
+        <element key="__autoload" value="null" />
+        <!-- Deprecated Features 7.3, https://secure.php.net/manual/en/migration73.deprecated.php -->
+        <!-- Strip-Tags Streaming -->
+        <element key="fgetss" value="fgets" />
+        <element key="gzgets" value="gzgets" />
+        <!-- Image Processing and GD -->
+        <element key="image2wbmp" value="imagewbmp" />
+        <!-- Multibyte String -->
+        <element key="mbregex_encoding" value="mb_regex_encoding" />
+        <element key="mbreg" value="mb_ereg" />
+        <element key="mbregi" value="mb_eregi" />
+        <element key="mbreg_replace" value="mb_ereg_replace" />
+        <element key="mbregi_replace" value="mb_eregi_replace" />
+        <element key="mbsplit" value="mb_split" />
+        <element key="mbreg_match" value="mb_ereg_match" />
+        <element key="mbreg_search" value="mb_ereg_search" />
+        <element key="mbreg_search_post" value="mb_ereg_search_post" />
+        <element key="mbreg_search_regs" value="mb_ereg_search_regs" />
+        <element key="mbreg_search_init" value="mb_ereg_search_init" />
+        <element key="mbreg_search_getregs" value="mb_ereg_search_getregs" />
+        <element key="mbreg_search_getpos" value="mb_ereg_search_getpos" />
+        <element key="mbreg_search_setpos" value="mb_ereg_search_setpos" />
+        <!-- Deprecated Features 7.4, https://secure.php.net/manual/en/migration74.deprecated.php -->
+        <!-- PHP Core ¶ -->
+        <element key="is_real" value="is_float" />
+        <element key="base_convert" value="null" />
+        <element key="bindec" value="null" />
+        <element key="octdec" value="null" />
+        <element key="hdexdec" value="null" />
+        <element key="array_key_exists" value="isset" />
+        <element key="get_magic_quotes_gpc" value="null" />
+        <element key="get_magic_quotes_runtime" value="null" />
+        <element key="hebrevc" value="null" />
+        <element key="convert_cyr_string" value="mb_convert_string" />
+        <element key="money_format" value="null" />
+        <element key="ezmlm_hash" value="null" />
+        <element key="restore_include_path" value="null" />
+        <!-- Lightweight Directory Access Protocol -->
+        <element key="ldap_control_paged_result_response" value="null" />
+        <element key="ldap_control_paged_result" value="null" />
+      </property>
+    </properties>
+  </rule>
+
+  <file>bin/</file>
+  <file>config/</file>
+  <file>public/</file>
+  <file>src/</file>
+  <file>tests/</file>
+
+</ruleset>
