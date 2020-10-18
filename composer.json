@@ -56,7 +56,6 @@
     "test": "bin/phpunit",
     "lint": [
       "bin/console lint:container",
-      "bin/console lint:twig",
       "bin/console lint:yaml ."
     ]
   },
