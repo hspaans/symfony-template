@@ -8,11 +8,12 @@
   "postCreateCommand": "",
   "remoteUser": "vscode",
   "extensions": [
-    "github.vscode-pull-request-github",
-    "editorconfig.editorconfig",
-    "felixfbecker.php-debug",
-    "felixfbecker.php-intellisense",
-    "ikappas.composer",
-    "redhat.vscode-yaml"
-  ]
+	"github.vscode-pull-request-github",
+	"editorconfig.editorconfig",
+	"felixfbecker.php-debug",
+	"felixfbecker.php-intellisense",
+	"ikappas.composer",
+	"redhat.vscode-yaml",
+	"bmewburn.vscode-intelephense-client"
+]
 }
