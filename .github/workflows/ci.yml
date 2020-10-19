@@ -1,0 +1,57 @@
+---
+name: CI
+
+on: [push]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer Downloads
+        uses: actions/cache@v2.1.2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Cache PHP dependencies
+        uses: actions/cache@v2.1.2
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
+      - name: Cache Symfony database
+        uses: actions/cache@v2.1.2
+        id: symfony-cache-db
+        with:
+          path: ~/.symfony/cache
+          key: db
+
+      - name: Run Symfony security checker
+        uses: symfonycorp/security-checker-action@v2
+
+      - name: Install dependencies
+        uses: php-actions/composer@v3
+
+      - name: Validate Symfony files
+        uses: php-actions/composer@v3
+        with:
+          suggest: yes
+          progress: yes
+          command: run-script
+          args: lint
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v9
+        with:
+          configuration: phpunit.xml.dist

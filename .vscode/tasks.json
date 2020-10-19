@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Unit and functional tests",
+      "type": "shell",
+      "group": "test",
+      "command": "composer run-script test"
+    },
+    {
+      "label": "Lint configuration files",
+      "type": "shell",
+      "group": "test",
+      "command": "composer run-script lint"
+    },
+    {
+      "label": "Validate the mapping files",
+      "type": "shell",
+      "group": "test",
+      "command": "php bin/console doctrine:schema:validate"
+    },
+    {
+      "label": "Run a local web server",
+      "type": "shell",
+      "command": "php -S 0.0.0.0:8000 -t public/"
+    }
+  ]
+}
