@@ -17,7 +17,7 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache Composer Downloads
-        uses: actions/cache@v2.1.1
+        uses: actions/cache@v2.1.2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -25,13 +25,13 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Cache PHP dependencies
-        uses: actions/cache@v2.1.1
+        uses: actions/cache@v2.1.2
         with:
           path: vendor
           key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
 
       - name: Cache Symfony database
-        uses: actions/cache@v2.1.1
+        uses: actions/cache@v2.1.2
         id: symfony-cache-db
         with:
           path: ~/.symfony/cache
@@ -41,10 +41,10 @@ jobs:
         uses: symfonycorp/security-checker-action@v2
 
       - name: Install dependencies
-        uses: php-actions/composer@v2
+        uses: php-actions/composer@v3
 
       - name: Validate Symfony files
-        uses: php-actions/composer@v2
+        uses: php-actions/composer@v3
         with:
           suggest: yes
           progress: yes
