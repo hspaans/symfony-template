@@ -45,10 +45,10 @@ jobs:
         uses: symfonycorp/security-checker-action@v2
 
       - name: Install dependencies
-        uses: php-actions/composer@v3
+        uses: php-actions/composer@v4
 
       - name: Validate Symfony files
-        uses: php-actions/composer@v3
+        uses: php-actions/composer@v4
         with:
           suggest: yes
           progress: yes
