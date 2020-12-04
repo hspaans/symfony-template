@@ -47,6 +47,5 @@ jobs:
         uses: github/super-linter@v3.14.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_EDITORCONFIG: false
           VALIDATE_PHP_PHPSTAN: false
           VALIDATE_PHP_PSALM: false
