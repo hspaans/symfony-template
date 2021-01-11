@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/hspaans/symfony-devcontainer:latest",
+  "image": "ghcr.io/hspaans/php-devcontainer:latest",
   "name": "Symfony",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
