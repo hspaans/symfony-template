@@ -8,12 +8,45 @@ on:
       - master
 
 jobs:
-  build-test:
+
+  lint:
+    name: Lint Code Base
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-      - uses: actions/checkout@v2
+      - name: Setup Environment
+        run: |
+          mkdir .github/linters
+          cp phpcs.xml.dist .github/linters/phpcs.xml
+
+      - name: Lint Code Base
+        uses: github/super-linter@v3.14.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_PHP_PHPSTAN: false
+          VALIDATE_PHP_PSALM: false
+
+  build-test:
+    needs: lint
+    name: Test Code Base
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - php7.3
+          - php7.4
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Environment
+        run: |
+          cp .env.ci .env.local
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -44,18 +77,14 @@ jobs:
       - name: Run Symfony security checker
         uses: symfonycorp/security-checker-action@v2
 
-      - name: Install dependencies
-        uses: php-actions/composer@v4
+      - name: Install PHP dependencies
+        run: |
+          ${{ matrix.php }} /usr/bin/composer install
 
       - name: Validate Symfony files
-        uses: php-actions/composer@v4
-        with:
-          suggest: yes
-          progress: yes
-          command: run-script
-          args: lint
+        run: |
+          ${{ matrix.php }} /usr/bin/composer run lint
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v9
-        with:
-          configuration: phpunit.xml.dist
+        run: |
+          ${{ matrix.php }} /usr/bin/composer run test
